@@ -1,16 +1,15 @@
-import { useState } from "react";
-import "./App.css";
+import './App.css'
+import { TestComponent } from './components'
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <h1 className="text-3xl font-bold bg-red-900 font-sans text-ellipsis w-full">
+      <h1 className="w-full text-ellipsis bg-red-900 font-sans text-3xl font-bold">
         Hello world!
       </h1>
+      <TestComponent />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
