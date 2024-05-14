@@ -1,14 +1,10 @@
-import './App.css'
-import { TestComponent } from './components'
+import Home from './pages/Home'
 
 function App() {
   return (
-    <>
-      <h1 className="w-full text-ellipsis bg-red-900 font-sans text-3xl font-bold">
-        Hello world!
-      </h1>
-      <TestComponent />
-    </>
+    <div className="bg-primary h-screen w-screen">
+      <Home />
+    </div>
   )
 }
 
