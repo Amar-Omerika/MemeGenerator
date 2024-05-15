@@ -1,8 +1,8 @@
-import Home from './pages/Home'
+import Home from './pages/Home/Home'
 
 function App() {
   return (
-    <div className="bg-primary h-screen w-screen">
+    <div className="h-screen w-screen bg-primary">
       <Home />
     </div>
   )
