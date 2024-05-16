@@ -6,8 +6,8 @@ import {
   GenerateIcon,
   ResetIcon
 } from '../../assets'
-import GenericButton from '../../components/GenericButton'
 import MainSlider from '../../components/MainSlider'
+import GenericButton from '../../components/buttons/GenericButton'
 
 const Home: React.FC = () => {
   function handleButtonClick() {
