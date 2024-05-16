@@ -15,9 +15,9 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="grid grid-cols-12">
-      <div className="col-span-3 h-screen border border-r-2 border-darkBrown pr-6">
-        <div className="rounded border-8 border-darkBrown">
+    <div className="flex ">
+      <div className="h-screen">
+        <div className="w-[25rem] rounded border-8 border-darkBrown">
           <img src={CatBackground} alt="CatBackground" />
         </div>
         <GenericButton
@@ -37,11 +37,13 @@ const Home: React.FC = () => {
           customStyle={{ backgroundColor: '#764824', color: '#fdf6e7' }}
         />
       </div>
-      <div className="col-span-9 h-full w-full p-14">
-        <h1 className="text-2xl font-extrabold text-darkBrown">
-          CREATE YOUR MICHI
-        </h1>
-        <MainSlider />
+      <div className="h-screen w-full">
+        <div className="ml-12 h-full border-l-2 border-darkBrown p-14">
+          <h1 className="text-2xl font-extrabold text-darkBrown">
+            CREATE YOUR MICHI
+          </h1>
+          {/* <MainSlider /> */}
+        </div>
       </div>
     </div>
   )
