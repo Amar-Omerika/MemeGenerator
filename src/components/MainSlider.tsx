@@ -16,9 +16,9 @@ function MainSlider() {
   }
 
   return (
-    <div className="mt-12">
-      <span className="text-xl font-bold text-gray-800">Cat Gallery</span>
-      <div className="my-4 flex w-full items-center">
+    <div className="mt-6">
+      <span className="text-xl font-bold text-darkBrown">Cat Gallery</span>
+      <div className="my-2 flex w-full items-center">
         <button
           onClick={() => handleScroll('left')}
           className="mr-2 flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-800 text-gray-800"

@@ -17,8 +17,8 @@ const Home: React.FC = () => {
   return (
     <div className="flex ">
       <div className="h-screen">
-        <div className="w-[25rem] rounded border-8 border-darkBrown">
-          <img src={CatBackground} alt="CatBackground" />
+        <div className="w-[32rem] rounded-2xl border-8 border-darkBrown">
+          <img src={CatBackground} alt="CatBackground" className="rounded-lg" />
         </div>
         <GenericButton
           customOnClick={handleButtonClick}
@@ -34,15 +34,21 @@ const Home: React.FC = () => {
           customOnClick={handleButtonClick}
           buttonText={'DOWNLOAD'}
           buttonIcon={DownloadIcon}
-          customStyle={{ backgroundColor: '#764824', color: '#fdf6e7' }}
+          customStyle={{
+            backgroundColor: '#764824',
+            color: '#fdf6e7',
+            width: '98%',
+            padding: '13px',
+            margin: '1rem auto'
+          }}
         />
       </div>
-      <div className="h-screen w-full">
-        <div className="ml-12 h-full border-l-2 border-darkBrown p-14">
+      <div className="h-screen w-full overflow-hidden">
+        <div className="ml-16 h-full border-l-2 border-darkBrown px-16 py-12">
           <h1 className="text-2xl font-extrabold text-darkBrown">
             CREATE YOUR MICHI
           </h1>
-          {/* <MainSlider /> */}
+          <MainSlider />
         </div>
       </div>
     </div>
