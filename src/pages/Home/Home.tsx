@@ -15,9 +15,9 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="flex ">
-      <div className="h-screen">
-        <div className="w-[32rem] rounded-2xl border-8 border-darkBrown">
+    <div className="flex flex-col md:flex md:flex-row">
+      <div className="">
+        <div className="mx-auto w-full rounded-2xl border-8 border-darkBrown sm:w-[32rem] md:w-[300px] lg:w-[500px]">
           <img src={CatBackground} alt="CatBackground" className="rounded-lg" />
         </div>
         <GenericButton
@@ -43,8 +43,8 @@ const Home: React.FC = () => {
           }}
         />
       </div>
-      <div className="h-screen w-full overflow-hidden">
-        <div className="ml-16 h-full border-l-2 border-darkBrown px-16 py-12">
+      <div className="h-screen w-full max-w-[85rem] overflow-hidden">
+        <div className="h-full border-l-2 border-darkBrown px-2 py-12 sm:px-8 md:ml-10 md:px-16 lg:ml-10 xl:ml-16">
           <h1 className="text-2xl font-extrabold text-darkBrown">
             CREATE YOUR MICHI
           </h1>

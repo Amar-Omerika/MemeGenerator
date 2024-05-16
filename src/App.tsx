@@ -2,7 +2,7 @@ import Home from './pages/Home/Home'
 
 function App() {
   return (
-    <div className="h-screen w-screen bg-primary">
+    <div className="h-screen overflow-x-hidden bg-primary">
       <Home />
     </div>
   )
