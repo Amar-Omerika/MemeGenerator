@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 import {
   Cat_a,
@@ -32,8 +32,35 @@ const cats = [
 
 function MainSlider() {
   const scrollContainer = useRef<HTMLDivElement | null>(null)
-
   const [selectedItem, setSelectedItem] = useState(0)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = scrollContainer.current
+      if (container) {
+        setCanScrollLeft(container.scrollLeft > 0)
+        setCanScrollRight(
+          container.scrollWidth > container.clientWidth + container.scrollLeft
+        )
+      }
+    }
+
+    const container = scrollContainer.current
+    if (container) {
+      container.addEventListener('scroll', handleScroll)
+      window.addEventListener('resize', handleScroll) // Add resize event listener
+      handleScroll() // Initialize scroll state
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('scroll', handleScroll)
+        window.removeEventListener('resize', handleScroll) // Clean up resize event listener
+      }
+    }
+  }, [])
 
   return (
     <div className="mt-6">
@@ -42,6 +69,7 @@ function MainSlider() {
         <SliderButton
           scrollDirection="left"
           scrollContainer={scrollContainer}
+          disabled={!canScrollLeft}
         />
         <div
           ref={scrollContainer}
@@ -70,6 +98,7 @@ function MainSlider() {
         <SliderButton
           scrollDirection="right"
           scrollContainer={scrollContainer}
+          disabled={!canScrollRight}
         />
       </div>
     </div>
