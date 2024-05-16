@@ -1,131 +1,56 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 
 import { Cat1 } from '../assets'
 
 function MainSlider() {
   const scrollContainer = useRef<HTMLDivElement | null>(null)
-  const isDragging = useRef(false)
-  const startX = useRef(0)
-  const scrollLeft = useRef(0)
-  const [scrollDistance, setScrollDistance] = useState(0)
 
   const images = new Array(20).fill(Cat1)
 
-  useEffect(() => {
+  const handleScroll = (direction: 'left' | 'right') => {
     const container = scrollContainer.current
     if (container) {
-      const handleMouseDown = (e: MouseEvent) => {
-        isDragging.current = true
-        startX.current = e.pageX - container.offsetLeft
-        scrollLeft.current = container.scrollLeft
-      }
-
-      const handleMouseMove = (e: MouseEvent) => {
-        if (!isDragging.current) return
-        e.preventDefault()
-        const x = e.pageX - container.offsetLeft
-        const walk = x - startX.current
-        container.scrollLeft = scrollLeft.current - walk
-      }
-
-      const handleMouseUp = () => {
-        isDragging.current = false
-      }
-
-      const handleTouchStart = (e: TouchEvent) => {
-        isDragging.current = true
-        startX.current = e.touches[0].pageX - container.offsetLeft
-        scrollLeft.current = container.scrollLeft
-      }
-
-      const handleTouchMove = (e: TouchEvent) => {
-        if (!isDragging.current) return
-        const x = e.touches[0].pageX - container.offsetLeft
-        const walk = x - startX.current
-        container.scrollLeft = scrollLeft.current - walk
-      }
-
-      const handleTouchEnd = () => {
-        isDragging.current = false
-      }
-
-      container.addEventListener('mousedown', handleMouseDown)
-      container.addEventListener('mousemove', handleMouseMove)
-      container.addEventListener('mouseup', handleMouseUp)
-      container.addEventListener('mouseleave', handleMouseUp)
-      container.addEventListener('touchstart', handleTouchStart)
-      container.addEventListener('touchmove', handleTouchMove)
-      container.addEventListener('touchend', handleTouchEnd)
-
-      return () => {
-        container.removeEventListener('mousedown', handleMouseDown)
-        container.removeEventListener('mousemove', handleMouseMove)
-        container.removeEventListener('mouseup', handleMouseUp)
-        container.removeEventListener('mouseleave', handleMouseUp)
-        container.removeEventListener('touchstart', handleTouchStart)
-        container.removeEventListener('touchmove', handleTouchMove)
-        container.removeEventListener('touchend', handleTouchEnd)
-      }
+      const scrollAmount = direction === 'left' ? -500 : 500
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' })
     }
-  }, [])
+  }
 
   return (
     <div className="mt-12">
-      <span className="text-xl font-bold text-darkBrown">Cat</span>
-      <div className="flex w-full items-center">
+      <span className="text-xl font-bold text-gray-800">Cat Gallery</span>
+      <div className="my-4 flex w-full items-center">
         <button
-          onMouseDown={() => handleScrollButton(true)}
-          onMouseUp={() => stopScrollButton()}
-          onMouseLeave={() => stopScrollButton()}
-          onTouchStart={() => handleScrollButton(true)}
-          onTouchEnd={() => stopScrollButton()}
-          className="h-28 rounded-md border-2 border-darkBrown p-4 font-bold text-darkBrown"
+          onClick={() => handleScroll('left')}
+          className="mr-2 flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-800 text-gray-800"
         >
           &lt;
         </button>
-        <div className="flex w-full overflow-x-scroll" ref={scrollContainer}>
+        <div
+          ref={scrollContainer}
+          className="hide-scrollbar flex w-full overflow-x-scroll"
+        >
           {images.map((image, index) => (
             <div
               key={index}
-              className="w-1/10 mx-2 flex-shrink-0 rounded-md border-4 border-darkBrown bg-white p-2"
+              className="mx-2 h-40 w-40 flex-shrink-0 rounded-md border-4 border-gray-800 bg-white p-2"
             >
-              <img src={image} alt={`Cat ${index + 1}`} width={98} />
+              <img
+                src={image}
+                alt={`Cat ${index + 1}`}
+                className="h-full w-full object-cover"
+              />
             </div>
           ))}
         </div>
         <button
-          onMouseDown={() => handleScrollButton(false)}
-          onMouseUp={() => stopScrollButton()}
-          onMouseLeave={() => stopScrollButton()}
-          onTouchStart={() => handleScrollButton(false)}
-          onTouchEnd={() => stopScrollButton()}
-          className="h-28 rounded-md border-2 border-darkBrown bg-white p-4 font-bold text-darkBrown"
+          onClick={() => handleScroll('right')}
+          className="ml-2 flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-800 text-gray-800"
         >
           &gt;
         </button>
       </div>
     </div>
   )
-
-  function handleScrollButton(isLeft: boolean) {
-    const container = scrollContainer.current
-    if (container) {
-      const scrollSpeed = 10 // Adjust this value as needed
-      const step = isLeft ? -scrollSpeed : scrollSpeed
-      const scroll = () => {
-        container.scrollLeft += step
-        setScrollDistance(container.scrollLeft)
-        if (scrollDistance !== container.scrollLeft) {
-          requestAnimationFrame(scroll)
-        }
-      }
-      requestAnimationFrame(scroll)
-    }
-  }
-
-  function stopScrollButton() {
-    setScrollDistance(0)
-  }
 }
 
 export default MainSlider
