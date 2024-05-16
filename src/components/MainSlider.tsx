@@ -1,12 +1,37 @@
 import clsx from 'clsx'
 import { useRef, useState } from 'react'
 
-import { Cat1 } from '../assets'
+import {
+  Cat_a,
+  brown,
+  cat_black,
+  cloud,
+  cube,
+  green,
+  michiwhat,
+  party,
+  purp,
+  scary2,
+  white
+} from '../assets'
 import SliderButton from './buttons/SliderButton'
+
+const cats = [
+  Cat_a,
+  brown,
+  cat_black,
+  cloud,
+  cube,
+  green,
+  michiwhat,
+  party,
+  purp,
+  scary2,
+  white
+]
 
 function MainSlider() {
   const scrollContainer = useRef<HTMLDivElement | null>(null)
-  const images = new Array(20).fill(Cat1)
 
   const [selectedItem, setSelectedItem] = useState(0)
 
@@ -22,7 +47,7 @@ function MainSlider() {
           ref={scrollContainer}
           className="hide-scrollbar flex w-full overflow-x-scroll"
         >
-          {images.map((image, index) => (
+          {cats.map((image, index) => (
             <div
               onClick={() => selectItem(index)}
               key={index}
