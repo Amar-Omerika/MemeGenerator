@@ -80,7 +80,7 @@ function MainSlider() {
               onClick={() => selectItem(index)}
               key={index}
               className={clsx(
-                'mx-2 h-[80px] w-[80px] flex-shrink-0 rounded-md border-[0.7px] border-darkBrown',
+                'mx-2 h-[80px] w-[80px] flex-shrink-0 cursor-pointer rounded-md border-[0.7px] border-darkBrown',
                 {
                   '!border-4 bg-white': selectedItem === index,
                   'bg-transparent': selectedItem !== index
