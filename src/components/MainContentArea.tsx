@@ -1,5 +1,5 @@
-import { catImages } from '../assets/assets'
-import { hatImages } from '../assets/assets'
+import { catImages } from '../assets/cats'
+import { hatImages } from '../assets/hats'
 import MainSlider from './MainSlider'
 
 function MainContentArea() {
