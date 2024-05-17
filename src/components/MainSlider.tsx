@@ -22,6 +22,7 @@ function MainSlider({
   )
 
   useEffect(() => {
+    if (selectedItemIndex === null) return
     setSelectedItem(selectedItemIndex)
   }, [selectedItemIndex])
 
