@@ -3,6 +3,7 @@ import { catImages } from '../assets/cats'
 import { faceImages } from '../assets/faces'
 import { frontAccessories } from '../assets/frontaccessories'
 import { hatImages } from '../assets/hats'
+import { pantImages } from '../assets/pants'
 import MainSlider from './MainSlider'
 
 function MainContentArea() {
@@ -17,6 +18,7 @@ function MainContentArea() {
         <MainSlider sliderName="FACE" items={faceImages} />
         <MainSlider sliderName="FRONT ACCESSORY" items={frontAccessories} />
         <MainSlider sliderName="BACK ACCESSORY" items={backAccessories} />
+        <MainSlider sliderName="PANT" items={pantImages} />
       </div>
     </div>
   )
