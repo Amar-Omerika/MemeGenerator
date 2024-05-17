@@ -1,4 +1,5 @@
 import { catImages } from '../assets/cats'
+import { faceImages } from '../assets/faces'
 import { hatImages } from '../assets/hats'
 import MainSlider from './MainSlider'
 
@@ -11,6 +12,7 @@ function MainContentArea() {
         </h1>
         <MainSlider sliderName="CAT" items={catImages} />
         <MainSlider sliderName="HAT" items={hatImages} />
+        <MainSlider sliderName="FACE" items={faceImages} />
       </div>
     </div>
   )
