@@ -5,15 +5,35 @@ import SliderButton from './buttons/SliderButton'
 
 function MainSlider({
   items,
-  sliderName
+  sliderName,
+  onSelectImage,
+  category,
+  selectedItemIndex
 }: {
   items: string[]
   sliderName: string
+  onSelectImage: (category: string, image: string, index: number) => void
+  category: string
+  selectedItemIndex: number | null
 }) {
   const scrollContainer = useRef<HTMLDivElement | null>(null)
-  const [selectedItem, setSelectedItem] = useState(0)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
+  const [selectedItem, setSelectedItem] = useState<number | null>(
+    selectedItemIndex
+  )
+
+  useEffect(() => {
+    setSelectedItem(selectedItemIndex)
+  }, [selectedItemIndex])
+
+  const selectItem = (index: number, image: string) => {
+    if (index === 0 && category !== 'background' && category !== 'cat') {
+      onSelectImage(category, '', index)
+      setSelectedItem(null)
+    } else {
+      setSelectedItem(index)
+      onSelectImage(category, image, index)
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,17 +49,20 @@ function MainSlider({
     const container = scrollContainer.current
     if (container) {
       container.addEventListener('scroll', handleScroll)
-      window.addEventListener('resize', handleScroll) // Add resize event listener
-      handleScroll() // Initialize scroll state
+      window.addEventListener('resize', handleScroll)
+      handleScroll()
     }
 
     return () => {
       if (container) {
         container.removeEventListener('scroll', handleScroll)
-        window.removeEventListener('resize', handleScroll) // Clean up resize event listener
+        window.removeEventListener('resize', handleScroll)
       }
     }
   }, [])
+
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
 
   return (
     <div className="mt-6">
@@ -56,7 +79,7 @@ function MainSlider({
         >
           {items?.map((image, index) => (
             <div
-              onClick={() => selectItem(index)}
+              onClick={() => selectItem(index, image)}
               key={index}
               className={clsx(
                 'mx-2 h-[80px] w-[80px] flex-shrink-0 cursor-pointer rounded-xl border-[0.7px] border-darkBrown',
@@ -68,7 +91,7 @@ function MainSlider({
             >
               <img
                 src={image}
-                alt={`Cat ${index + 1}`}
+                alt={`Item ${index + 1}`}
                 className="h-full w-full rounded-md object-cover p-[1px]"
               />
             </div>
@@ -82,11 +105,6 @@ function MainSlider({
       </div>
     </div>
   )
-
-  function selectItem(index: number) {
-    setSelectedItem(index)
-    console.log(`Selected item: ${index}`)
-  }
 }
 
 export default MainSlider

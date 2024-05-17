@@ -1,10 +1,13 @@
+import { SelectedImagesProvider } from './context/SelectedImagesContext'
 import Home from './pages/Home'
 
 function App() {
   return (
-    <div className="h-screen overflow-x-hidden bg-primary">
-      <Home />
-    </div>
+    <SelectedImagesProvider>
+      <div className="h-screen overflow-x-hidden bg-primary">
+        <Home />
+      </div>
+    </SelectedImagesProvider>
   )
 }
 
