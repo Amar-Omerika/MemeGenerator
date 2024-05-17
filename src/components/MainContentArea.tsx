@@ -1,4 +1,5 @@
 import { backAccessories } from '../assets/backaccessories'
+import { backgroundImages } from '../assets/backgrounds'
 import { catImages } from '../assets/cats'
 import { faceImages } from '../assets/faces'
 import { frontAccessories } from '../assets/frontaccessories'
@@ -21,6 +22,7 @@ function MainContentArea() {
         <MainSlider sliderName="BACK ACCESSORY" items={backAccessories} />
         <MainSlider sliderName="PANT" items={pantImages} />
         <MainSlider sliderName="OUTFIT" items={outfitImages} />
+        <MainSlider sliderName="BACKGROUND" items={backgroundImages} />
       </div>
     </div>
   )
