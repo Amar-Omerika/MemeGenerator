@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Stage, Layer, Image as KonvaImage } from 'react-konva'
 import useImage from 'use-image'
 
@@ -11,6 +11,22 @@ function SideMenu() {
     SelectedImagesContext
   )
   const stageRef = React.useRef<any>(null)
+  const [dimensions, setDimensions] = useState({ width: 500, height: 500 })
+
+  useEffect(() => {
+    const handleResize = () => {
+      const container = stageRef.current.container()
+      setDimensions({
+        width: container.offsetWidth,
+        height: container.offsetWidth
+      })
+    }
+    window.addEventListener('resize', handleResize)
+    handleResize() // Set initial size
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   const handleDownload = () => {
     const uri = stageRef.current.toDataURL()
@@ -23,10 +39,14 @@ function SideMenu() {
   return (
     <div>
       <div className="mx-auto w-full rounded-2xl border-8 border-darkBrown sm:w-[32rem] md:w-[300px] lg:w-[500px]">
-        <Stage width={500} height={500} ref={stageRef}>
+        <Stage
+          width={dimensions.width}
+          height={dimensions.height}
+          ref={stageRef}
+        >
           <Layer>
             {Object.values(selectedImages).map((src, index) => (
-              <ImageLayer key={index} src={src} />
+              <ImageLayer key={index} src={src} dimensions={dimensions} />
             ))}
           </Layer>
         </Stage>
@@ -57,12 +77,28 @@ function SideMenu() {
   )
 }
 
-const ImageLayer = ({ src }: { src: string }) => {
+const ImageLayer = ({
+  src,
+  dimensions
+}: {
+  src: string
+  dimensions: { width: number; height: number }
+}) => {
   const [image] = useImage(src)
-  const imageSize = 500 // Adjust this size based on your requirements
-  const borderRadius = 20 // Adjust this value to change the border radius
+  const imageSize = dimensions.width // Adjust this size based on your requirements
 
-  return <KonvaImage image={image} x={0} y={0} width={imageSize} height={500} />
+  const x = (dimensions.width - imageSize) / 2
+  const y = (dimensions.height - imageSize) / 2
+
+  return (
+    <KonvaImage
+      image={image}
+      x={x}
+      y={y}
+      width={imageSize}
+      height={imageSize}
+    />
+  )
 }
 
 export default SideMenu
