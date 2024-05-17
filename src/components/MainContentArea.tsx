@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 
 import { backAccessories } from '../assets/backaccessories'
 import { backgroundImages } from '../assets/backgrounds'
@@ -12,19 +12,9 @@ import { SelectedImagesContext } from '../context/SelectedImagesContext'
 import MainSlider from './MainSlider'
 
 function MainContentArea() {
-  const { selectedImages, addImage } = useContext(SelectedImagesContext)
-  const [selectedIndices, setSelectedIndices] = useState<{
-    [key: string]: number
-  }>({})
-
-  useEffect(() => {
-    const indices: { [key: string]: number } = {}
-    Object.keys(selectedImages).forEach((category) => {
-      const images = getCategoryImages(category)
-      indices[category] = images.indexOf(selectedImages[category])
-    })
-    setSelectedIndices(indices)
-  }, [selectedImages])
+  const { selectedImages, selectedIndices, addImage } = useContext(
+    SelectedImagesContext
+  )
 
   const getCategoryImages = (category: string) => {
     switch (category) {
@@ -60,56 +50,56 @@ function MainContentArea() {
           items={catImages}
           onSelectImage={addImage}
           category="cat"
-          selectedItemIndex={selectedIndices['cat'] || null}
+          selectedItemIndex={selectedIndices['cat']}
         />
         <MainSlider
           sliderName="HAT"
           items={hatImages}
           onSelectImage={addImage}
           category="hat"
-          selectedItemIndex={selectedIndices['hat'] || null}
+          selectedItemIndex={selectedIndices['hat']}
         />
         <MainSlider
           sliderName="FACE"
           items={faceImages}
           onSelectImage={addImage}
           category="face"
-          selectedItemIndex={selectedIndices['face'] || null}
+          selectedItemIndex={selectedIndices['face']}
         />
         <MainSlider
           sliderName="FRONT ACCESSORY"
           items={frontAccessories}
           onSelectImage={addImage}
           category="frontAccessory"
-          selectedItemIndex={selectedIndices['frontAccessory'] || null}
+          selectedItemIndex={selectedIndices['frontAccessory']}
         />
         <MainSlider
           sliderName="BACK ACCESSORY"
           items={backAccessories}
           onSelectImage={addImage}
           category="backAccessory"
-          selectedItemIndex={selectedIndices['backAccessory'] || null}
+          selectedItemIndex={selectedIndices['backAccessory']}
         />
         <MainSlider
           sliderName="PANT"
           items={pantImages}
           onSelectImage={addImage}
           category="pant"
-          selectedItemIndex={selectedIndices['pant'] || null}
+          selectedItemIndex={selectedIndices['pant']}
         />
         <MainSlider
           sliderName="OUTFIT"
           items={outfitImages}
           onSelectImage={addImage}
           category="outfit"
-          selectedItemIndex={selectedIndices['outfit'] || null}
+          selectedItemIndex={selectedIndices['outfit']}
         />
         <MainSlider
           sliderName="BACKGROUND"
           items={backgroundImages}
           onSelectImage={addImage}
           category="background"
-          selectedItemIndex={selectedIndices['background'] || null}
+          selectedItemIndex={selectedIndices['background']}
         />
       </div>
     </div>

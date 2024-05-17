@@ -22,13 +22,17 @@ function MainSlider({
   )
 
   useEffect(() => {
-    if (selectedItemIndex === null) return
     setSelectedItem(selectedItemIndex)
   }, [selectedItemIndex])
 
   const selectItem = (index: number, image: string) => {
-    setSelectedItem(index)
-    onSelectImage(category, image, index)
+    if (index === 0 && category !== 'background' && category !== 'cat') {
+      onSelectImage(category, '', index)
+      setSelectedItem(null)
+    } else {
+      setSelectedItem(index)
+      onSelectImage(category, image, index)
+    }
   }
 
   useEffect(() => {
