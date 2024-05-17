@@ -12,33 +12,7 @@ import { SelectedImagesContext } from '../context/SelectedImagesContext'
 import MainSlider from './MainSlider'
 
 function MainContentArea() {
-  const { selectedImages, selectedIndices, addImage } = useContext(
-    SelectedImagesContext
-  )
-
-  const getCategoryImages = (category: string) => {
-    switch (category) {
-      case 'background':
-        return backgroundImages
-      case 'cat':
-        return catImages
-      case 'face':
-        return faceImages
-      case 'hat':
-        return hatImages
-      case 'outfit':
-        return outfitImages
-      case 'pant':
-        return pantImages
-      case 'frontAccessory':
-        return frontAccessories
-      case 'backAccessory':
-        return backAccessories
-      default:
-        return []
-    }
-  }
-
+  const { selectedIndices, addImage } = useContext(SelectedImagesContext)
   return (
     <div className="w-full max-w-[85rem] overflow-hidden">
       <div className="h-full border-l-2 border-darkBrown px-2 py-12 sm:px-8 md:ml-10 md:px-16 lg:ml-10 xl:ml-16">
