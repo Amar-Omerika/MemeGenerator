@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
 
 import { backAccessories } from '../assets/backaccessories'
 import { backgroundImages } from '../assets/backgrounds'
