@@ -24,41 +24,49 @@ function MainContentArea() {
           sliderName="CAT"
           items={catImages}
           onSelectImage={addImage}
+          category="cat"
         />
         <MainSlider
           sliderName="HAT"
           items={hatImages}
           onSelectImage={addImage}
+          category="hat"
         />
         <MainSlider
           sliderName="FACE"
           items={faceImages}
           onSelectImage={addImage}
+          category="face"
         />
         <MainSlider
           sliderName="FRONT ACCESSORY"
           items={frontAccessories}
           onSelectImage={addImage}
+          category="frontAccessory"
         />
         <MainSlider
           sliderName="BACK ACCESSORY"
           items={backAccessories}
           onSelectImage={addImage}
+          category="backAccessory"
         />
         <MainSlider
           sliderName="PANT"
           items={pantImages}
           onSelectImage={addImage}
+          category="pant"
         />
         <MainSlider
           sliderName="OUTFIT"
           items={outfitImages}
           onSelectImage={addImage}
+          category="outfit"
         />
         <MainSlider
           sliderName="BACKGROUND"
           items={backgroundImages}
           onSelectImage={addImage}
+          category="background"
         />
       </div>
     </div>

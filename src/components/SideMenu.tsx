@@ -23,7 +23,7 @@ function SideMenu() {
       <div className="mx-auto w-full rounded-2xl border-8 border-darkBrown sm:w-[32rem] md:w-[300px] lg:w-[500px]">
         <Stage width={500} height={500} ref={stageRef}>
           <Layer>
-            {selectedImages.map((src, index) => (
+            {Object.values(selectedImages).map((src, index) => (
               <ImageLayer key={index} src={src} />
             ))}
           </Layer>
@@ -57,17 +57,9 @@ function SideMenu() {
 
 const ImageLayer = ({ src }: { src: string }) => {
   const [image] = useImage(src)
-  const imageSize = 500 // Adjust this size based on your requirements
+  const imageSize = 486
 
-  return (
-    <KonvaImage
-      image={image}
-      x={0} // Positioning can be adjusted as needed
-      y={0} // Positioning can be adjusted as needed
-      width={imageSize}
-      height={imageSize}
-    />
-  )
+  return <KonvaImage image={image} x={0} y={0} width={imageSize} height={500} />
 }
 
 export default SideMenu

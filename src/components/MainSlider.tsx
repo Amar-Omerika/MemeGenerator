@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import { KonvaEventObject } from 'konva/lib/Node'
 import { useRef, useState, useEffect } from 'react'
 
 import SliderButton from './buttons/SliderButton'
@@ -7,11 +6,13 @@ import SliderButton from './buttons/SliderButton'
 function MainSlider({
   items,
   sliderName,
-  onSelectImage
+  onSelectImage,
+  category
 }: {
   items: string[]
   sliderName: string
-  onSelectImage: (image: string) => void
+  onSelectImage: (category: string, image: string) => void
+  category: string
 }) {
   const scrollContainer = useRef<HTMLDivElement | null>(null)
   const [selectedItem, setSelectedItem] = useState<number | null>(null)
@@ -46,7 +47,7 @@ function MainSlider({
 
   const selectItem = (index: number, image: string) => {
     setSelectedItem(index)
-    onSelectImage(image)
+    onSelectImage(category, image)
   }
 
   return (
