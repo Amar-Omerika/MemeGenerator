@@ -11,7 +11,7 @@ import { pantImages } from '../assets/pants'
 
 interface SelectedImagesContextProps {
   selectedImages: { [key: string]: string }
-  addImage: (category: string, image: string) => void
+  addImage: (category: string, image: string, index: number) => void
   resetImages: () => void
   generateRandomMichi: () => void
 }
@@ -41,11 +41,17 @@ export const SelectedImagesProvider: React.FC<{ children: ReactNode }> = ({
     setSelectedImages(initialImages)
   }, [])
 
-  const addImage = (category: string, image: string) => {
-    setSelectedImages((prevImages) => ({
-      ...prevImages,
-      [category]: image
-    }))
+  const addImage = (category: string, image: string, index: number) => {
+    setSelectedImages((prevImages) => {
+      if (index === 0 && category !== 'background' && category !== 'cat') {
+        const { [category]: _, ...newImages } = prevImages
+        return newImages
+      }
+      return {
+        ...prevImages,
+        [category]: image
+      }
+    })
   }
 
   const resetImages = () => {

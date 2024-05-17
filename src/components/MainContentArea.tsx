@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 
 import { backAccessories } from '../assets/backaccessories'
 import { backgroundImages } from '../assets/backgrounds'
@@ -23,7 +23,6 @@ function MainContentArea() {
       const images = getCategoryImages(category)
       indices[category] = images.indexOf(selectedImages[category])
     })
-
     setSelectedIndices(indices)
   }, [selectedImages])
 

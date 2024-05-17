@@ -12,7 +12,7 @@ function MainSlider({
 }: {
   items: string[]
   sliderName: string
-  onSelectImage: (category: string, image: string) => void
+  onSelectImage: (category: string, image: string, index: number) => void
   category: string
   selectedItemIndex: number | null
 }) {
@@ -28,7 +28,7 @@ function MainSlider({
 
   const selectItem = (index: number, image: string) => {
     setSelectedItem(index)
-    onSelectImage(category, image)
+    onSelectImage(category, image, index)
   }
 
   useEffect(() => {
