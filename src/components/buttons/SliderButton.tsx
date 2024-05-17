@@ -21,7 +21,7 @@ function SliderButton({
         {
           'mr-2': scrollDirection === 'left',
           'ml-2': scrollDirection === 'right',
-          'cursor-not-allowed opacity-50': disabled
+          'cursor-not-allowed opacity-15': disabled
         }
       )}
       disabled={disabled}
