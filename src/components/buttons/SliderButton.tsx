@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 
-import { left, right } from '../../assets'
+import { left, right } from '../../assets/assets'
 
 interface SliderButtonProps {
   scrollDirection: 'left' | 'right'

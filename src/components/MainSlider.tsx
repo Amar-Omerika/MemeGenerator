@@ -1,36 +1,15 @@
 import clsx from 'clsx'
 import { useRef, useState, useEffect } from 'react'
 
-import {
-  Cat_a,
-  brown,
-  cat_black,
-  cloud,
-  cube,
-  green,
-  michiwhat,
-  party,
-  purp,
-  scary2,
-  white
-} from '../assets'
 import SliderButton from './buttons/SliderButton'
 
-const cats = [
-  Cat_a,
-  brown,
-  cat_black,
-  cloud,
-  cube,
-  green,
-  michiwhat,
-  party,
-  purp,
-  scary2,
-  white
-]
-
-function MainSlider() {
+function MainSlider({
+  items,
+  sliderName
+}: {
+  items: string[]
+  sliderName: string
+}) {
   const scrollContainer = useRef<HTMLDivElement | null>(null)
   const [selectedItem, setSelectedItem] = useState(0)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
@@ -64,7 +43,7 @@ function MainSlider() {
 
   return (
     <div className="mt-6">
-      <span className="text-xl font-bold text-darkBrown">CAT</span>
+      <span className="text-xl font-bold text-darkBrown">{sliderName}</span>
       <div className="my-2 flex w-full items-center">
         <SliderButton
           scrollDirection="left"
@@ -75,7 +54,7 @@ function MainSlider() {
           ref={scrollContainer}
           className="hide-scrollbar flex w-full overflow-x-scroll"
         >
-          {cats.map((image, index) => (
+          {items?.map((image, index) => (
             <div
               onClick={() => selectItem(index)}
               key={index}

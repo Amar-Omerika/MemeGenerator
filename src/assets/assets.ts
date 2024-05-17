@@ -16,6 +16,20 @@ import left from './svg/left.svg'
 import ResetIcon from './svg/resetIcon.svg'
 import right from './svg/right.svg'
 
+export const catImages = [
+  Cat_a,
+  brown,
+  cat_black,
+  cloud,
+  cube,
+  green,
+  michiwhat,
+  party,
+  purp,
+  scary2,
+  white
+]
+
 export {
   Cat_a,
   CatBackground,
