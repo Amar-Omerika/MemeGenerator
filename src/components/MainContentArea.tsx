@@ -1,4 +1,5 @@
 import { catImages } from '../assets/assets'
+import { hatImages } from '../assets/assets'
 import MainSlider from './MainSlider'
 
 function MainContentArea() {
@@ -9,7 +10,7 @@ function MainContentArea() {
           CREATE YOUR MICHI
         </h1>
         <MainSlider sliderName="CAT" items={catImages} />
-        <MainSlider sliderName="HAT" items={catImages} />
+        <MainSlider sliderName="HAT" items={hatImages} />
       </div>
     </div>
   )
