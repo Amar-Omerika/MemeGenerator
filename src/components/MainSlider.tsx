@@ -7,17 +7,28 @@ function MainSlider({
   items,
   sliderName,
   onSelectImage,
-  category
+  category,
+  selectedItemIndex
 }: {
   items: string[]
   sliderName: string
   onSelectImage: (category: string, image: string) => void
   category: string
+  selectedItemIndex: number | null
 }) {
   const scrollContainer = useRef<HTMLDivElement | null>(null)
-  const [selectedItem, setSelectedItem] = useState<number | null>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
+  const [selectedItem, setSelectedItem] = useState<number | null>(
+    selectedItemIndex
+  )
+
+  useEffect(() => {
+    setSelectedItem(selectedItemIndex)
+  }, [selectedItemIndex])
+
+  const selectItem = (index: number, image: string) => {
+    setSelectedItem(index)
+    onSelectImage(category, image)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,10 +56,8 @@ function MainSlider({
     }
   }, [])
 
-  const selectItem = (index: number, image: string) => {
-    setSelectedItem(index)
-    onSelectImage(category, image)
-  }
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
 
   return (
     <div className="mt-6">

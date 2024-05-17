@@ -7,7 +7,9 @@ import { SelectedImagesContext } from '../context/SelectedImagesContext'
 import GenericButton from './buttons/GenericButton'
 
 function SideMenu() {
-  const { selectedImages, resetImages } = useContext(SelectedImagesContext)
+  const { selectedImages, resetImages, generateRandomMichi } = useContext(
+    SelectedImagesContext
+  )
   const stageRef = React.useRef<any>(null)
 
   const handleDownload = () => {
@@ -35,7 +37,7 @@ function SideMenu() {
         buttonIcon={ResetIcon}
       />
       <GenericButton
-        customOnClick={() => console.log('Generate Random')}
+        customOnClick={generateRandomMichi}
         buttonText={'GENERATE RANDOM'}
         buttonIcon={GenerateIcon}
       />
@@ -57,7 +59,8 @@ function SideMenu() {
 
 const ImageLayer = ({ src }: { src: string }) => {
   const [image] = useImage(src)
-  const imageSize = 486
+  const imageSize = 500 // Adjust this size based on your requirements
+  const borderRadius = 20 // Adjust this value to change the border radius
 
   return <KonvaImage image={image} x={0} y={0} width={imageSize} height={500} />
 }
