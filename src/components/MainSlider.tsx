@@ -69,7 +69,7 @@ function MainSlider({
               <img
                 src={image}
                 alt={`Cat ${index + 1}`}
-                className="h-full w-full object-cover"
+                className="h-full w-full rounded-md object-cover p-[1px]"
               />
             </div>
           ))}
