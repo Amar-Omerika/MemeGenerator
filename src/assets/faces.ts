@@ -1,4 +1,3 @@
-// @ts-nocheck
 import animeface from './png/faces/animeface.png'
 import beat_eyes from './png/faces/beat_eyes.png'
 import big_smile from './png/faces/big_smile.png'
