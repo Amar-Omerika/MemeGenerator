@@ -8,8 +8,10 @@ import lime from './png/pants/lime.png'
 import orange from './png/pants/orange.png'
 import pink from './png/pants/pink.png'
 import yellow from './png/pants/yellow.png'
+import empty from './svg/empty.svg'
 
 export const pantImages = [
+  empty,
   beige,
   black,
   blue_2,
